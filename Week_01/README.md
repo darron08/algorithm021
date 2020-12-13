@@ -105,3 +105,144 @@ for ($i = 0; i < count($arr) - 2; $i++) {
 ## 双指针
 
 双指针是一种很常用的手法，在三数之和和环形链表中都能用到。
+
+
+
+# Stack 栈
+
+先入后出 first in last out FILO
+
+## 时间复杂度
+
+添加 O(1)
+
+删除 O(1)
+
+查询 O(n)
+
+
+# Queue 队列
+
+先入先出 first in first out FIFO
+
+## 时间复杂度
+
+添加 O(1)
+
+删除 O(1)
+
+查询 O(n)
+
+
+
+## 队列的实现
+
+1. 用数组实现，叫做顺序队列
+2. 用链表实现，叫做链式队列
+
+
+
+### 数组实现
+
+用数组实现有个问题：随着head指针和tail指针不断往后移动，当tail移动到最右边，即使数组中还有空闲空间，也无法继续往队列中添加数据了。为了解决这个问题，在入队的时候，需要进行数据搬移。代码如下：
+
+```java
+publi boolean enqueue(String item) {
+    //tail == n表示队列末尾没有空间了
+    if (tail == n) {
+        //tail == n && head == 0表示整个队列都占满了
+        if (head == 0) {
+            return false;
+        }
+        //数据搬移
+        for (int i = head; i < tail; ++i) {
+			items[i-head] = items[i];
+        }
+        //搬移完之后重新更新head和tail
+        tail -= head;
+        head = 0;
+    }
+    
+    items[tail] = item;
+    ++tail;
+    return true;
+}
+```
+
+
+
+## 循环队列
+
+上面用数组来实现队列的情况，在tail == n时，会有数据搬移操作，这样入队性能会受到影响。
+
+
+
+## 非循环队列
+
+队空条件: head == tail
+
+队满条件: tail == n
+
+### 循环队列
+
+队空条件: head == tail
+
+队满条件: (tail +1)%n == head
+
+
+
+# Deque 双端队列 Double-End Queue
+
+## 时间复杂度
+
+添加 O(1)
+
+删除 O(1)
+
+查询 O(n)
+
+实战、高级语言中更常用
+
+
+
+# Priority Queue 优先队列
+
+## 时间复杂度
+
+插入操作 O(1)
+
+取出操作 O(logn) 按照元素优先级取出
+
+
+
+底层具体实现的数据结构较为多样和复杂，可以是heap，BST(binary search tree),  treap
+
+heap实现：
+
+二叉树实现，Fibonacci堆
+
+面试出现比较多
+
+
+
+# 学习链接
+
+## Java源码分析（ArrayList）
+
+<http://developer.classpath.org/doc/java/util/ArrayList-source.html>
+
+## Linked List的标准实现代码
+
+<https://www.geeksforgeeks.org/implementing-a-linked-list-in-java-using-class/>
+
+## Java源码分析（LinkedList）
+
+<http://developer.classpath.org/doc/java/util/LinkedList-source.html>
+
+## LRU Cache - Linked list: LRU缓存机制
+
+<https://leetcode-cn.com/problems/lru-cache/>
+
+## Redis - Skip List: 跳跃表、为啥Redis使用跳表而不是红黑树？
+
+<https://www.zhihu.com/question/20202931>
