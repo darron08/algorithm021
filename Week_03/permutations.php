@@ -19,11 +19,11 @@ class Solution {
     }
 
     /**
-     * @param Integer[] $nums
-     * @param Integer $len
-     * @param Integer $depth
-     * @param Integer[] $path
-     * @param Boolean[] $used
+     * @param Integer[] $nums 数组
+     * @param Integer $len 数组长度
+     * @param Integer $depth 深度，由0开始
+     * @param Integer[] $path 组合
+     * @param Boolean[] $used 以使用的
      * @param Integer[][] $res
      * @return null
      */
